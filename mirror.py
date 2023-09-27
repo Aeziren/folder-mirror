@@ -1,4 +1,5 @@
 import os
+from filecmp import cmp
 from sys import exit
 import argparse
 import time
@@ -13,6 +14,7 @@ def main():
     args = parser.parse_args()
 
     if not args.interval:
+        # Need attention here
         interval = 5
 
     while True:
@@ -34,15 +36,16 @@ def mirror(path_source, path_replica=None):
         replica_files = os.listdir(path_replica)
         print("Mirroring to current working directory...")
 
-    # Add new files to replica
+    # Add or update files on replica folder
     for file in source_files:
+        origin_file_path = f"{path_source}\{file}"
+        destination_file_path = f"{path_replica}\{file}"
+
         if file not in replica_files:
-            origin_file_path = f"{path_source}\{file}"
-            destination_file_path = f"{path_replica}\{file}"
             shutil.copy(origin_file_path, destination_file_path)
-        else:
-            # Check for modification on file
-            pass
+        elif not cmp(origin_file_path, destination_file_path):
+            shutil.copy(origin_file_path, destination_file_path)
+
 
     # Remove files from replica
     for file in replica_files:
