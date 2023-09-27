@@ -36,23 +36,33 @@ def mirror(path_source, path_replica=None):
         replica_files = os.listdir(path_replica)
         print("Mirroring to current working directory...")
 
-    # Add or update files on replica folder
+    # Add or update files on current folder
     for file in source_files:
         origin_file_path = f"{path_source}\{file}"
         destination_file_path = f"{path_replica}\{file}"
 
-        if file not in replica_files:
-            shutil.copy(origin_file_path, destination_file_path)
-        elif not cmp(origin_file_path, destination_file_path):
-            shutil.copy(origin_file_path, destination_file_path)
+        try:
+            if file not in replica_files:
+                shutil.copy(origin_file_path, destination_file_path)
+            elif not cmp(origin_file_path, destination_file_path):
+                shutil.copy(origin_file_path, destination_file_path)
+        except PermissionError:
+            try:
+                os.mkdir(destination_file_path)
+            except FileExistsError:
+                pass
+            mirror(origin_file_path, destination_file_path)
 
 
-    # Remove files from replica
+
+    # Remove files from current folder
     for file in replica_files:
         if file not in source_files:
             file_path = f"{path_replica}\{file}"
-            os.remove(file_path)
-
+            try:
+                os.remove(file_path)
+            except PermissionError:
+                shutil.rmtree(file_path)
 
 if __name__ == "__main__":
     main()
