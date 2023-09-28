@@ -1,9 +1,13 @@
 ## Usage:
-`python mirror.py "C:\\path\\to\\source\\folder\\" "C:\\path\\to\\replica\\folder" "C:\\path\\to\\log\\file\\" "interval(seconds)"`
+```bash
+python mirror.py "C:\\path\\to\\source\\folder\\" "C:\\path\\to\\replica\\folder" "C:\\path\\to\\log\\file\\" "interval(seconds)"
+```
 
 
 Example:
-`python mirror.py "C:\\Users\\Miguel\\Desktop\\Demonstration\\Source Folder\\" "C:\\Users\\Miguel\\Desktop\\Demonstration\\Replica Folder\\" "C:\\Users\\Miguel\\Desktop\\Demonstration\\" 0.1`
+```bash
+python mirror.py "C:\\Users\\Miguel\\Desktop\\Demonstration\\Source Folder\\" "C:\\Users\\Miguel\\Desktop\\Demonstration\\Replica Folder\\" "C:\\Users\\Miguel\\Desktop\\Demonstration\\" 0.1
+```
 
 ## Video Demonstration
 
