@@ -1,8 +1,8 @@
 # Folder Mirror
 #### Video Demo:  https://youtu.be/769DdzG_GBw
 ### Description:
-This program implemment a folder mirror. Every change that happens on the source folder will be mirrored to the replica
-folder while the program keeps running. Also, the changes will be logged in the terminal and in a especified log.txt file.
+This program implements a folder mirror. Every change that happens on the source folder will be mirrored to the replica
+folder while the program keeps running. Also, the changes will be logged in the terminal and in a specified log.txt file.
 #### Usage:
 The program usage is pretty objective:
 1. Download project.py
